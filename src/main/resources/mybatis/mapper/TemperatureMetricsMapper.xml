@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="li.dongpo.green.house.metrics.repository.TemperatureMetricsRepository">
+
+    <resultMap id="BaseResultMap" type="li.dongpo.green.house.metrics.domain.TemperatureMetrics">
+        <id column="id" property="id"/>
+        <result column="house_id" property="houseId"/>
+        <result column="device_id" property="deviceId"/>
+        <result column="temperature" property="temperature"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="createTime"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        `id`, `house_id`, `device_id`, `temperature`, `create_time`, `update_time`
+    </sql>
+
+    <insert id="insert" useGeneratedKeys="true" keyColumn="id" keyProperty="id"
+            parameterType="li.dongpo.green.house.metrics.domain.TemperatureMetrics">
+        insert into temperature_metrics
+        (`house_id`, `device_id`, `temperature`)
+        values
+        (#{houseId}, #{deviceId}, #{temperature})
+    </insert>
+
+    <select id="selectById" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from temperature_metrics
+        where id = #{id}
+    </select>
+
+</mapper>
