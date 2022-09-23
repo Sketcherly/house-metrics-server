@@ -7,20 +7,21 @@
         <result column="house_id" property="houseId"/>
         <result column="device_id" property="deviceId"/>
         <result column="temperature" property="temperature"/>
+        <result column="metric_time" property="metricTime"/>
         <result column="create_time" property="createTime"/>
         <result column="update_time" property="createTime"/>
     </resultMap>
 
     <sql id="Base_Column_List">
-        `id`, `house_id`, `device_id`, `temperature`, `create_time`, `update_time`
+        `id`, `house_id`, `device_id`, `metric_time`, `temperature`, `create_time`, `update_time`
     </sql>
 
     <insert id="insert" useGeneratedKeys="true" keyColumn="id" keyProperty="id"
             parameterType="li.dongpo.green.house.metrics.domain.TemperatureMetrics">
         insert into temperature_metrics
-        (`house_id`, `device_id`, `temperature`)
+        (`house_id`, `device_id`, `metric_time`, `temperature`)
         values
-        (#{houseId}, #{deviceId}, #{temperature})
+        (#{houseId}, #{deviceId}, #{metricTime}, #{temperature})
     </insert>
 
     <select id="selectById" resultMap="BaseResultMap">

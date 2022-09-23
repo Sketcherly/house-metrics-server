@@ -1,6 +1,9 @@
 package li.dongpo.green.house.metrics.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.math.BigDecimal;
+import java.util.Date;
 
 /**
  * @author dongpo.li
@@ -10,6 +13,8 @@ public class TemperatureMetrics extends BaseEntity {
 
     private String houseId;
     private String deviceId;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private Date metricTime;
     private BigDecimal temperature;
 
     public String getHouseId() {
@@ -26,6 +31,14 @@ public class TemperatureMetrics extends BaseEntity {
 
     public void setDeviceId(String deviceId) {
         this.deviceId = deviceId;
+    }
+
+    public Date getMetricTime() {
+        return metricTime;
+    }
+
+    public void setMetricTime(Date metricTime) {
+        this.metricTime = metricTime;
     }
 
     public BigDecimal getTemperature() {
