@@ -2,6 +2,7 @@ package li.dongpo.green.house.metrics.controller;
 
 import li.dongpo.green.house.metrics.domain.TemperatureMetrics;
 import li.dongpo.green.house.metrics.domain.vo.BasicResponseObject;
+import li.dongpo.green.house.metrics.dto.TemperatureMetricsRequestDto;
 import li.dongpo.green.house.metrics.service.TemperatureMetricsService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -22,7 +23,13 @@ public class TemperatureMetricsController {
     private TemperatureMetricsService temperatureMetricsService;
 
     @PostMapping("/postMetrics")
-    public BasicResponseObject<?> postMetrics(@RequestBody TemperatureMetrics metrics) {
+    public BasicResponseObject<?> postMetrics(@RequestBody TemperatureMetricsRequestDto requestDto) {
+
+        TemperatureMetrics metrics = new TemperatureMetrics();
+        metrics.setHouseId("");
+        metrics.setDeviceId(requestDto.getDeviceId());
+        metrics.setMetricTime(requestDto.getMetricTime());
+        metrics.setTemperature(requestDto.getTemperature());
 
         temperatureMetricsService.postMetrics(metrics);
 
