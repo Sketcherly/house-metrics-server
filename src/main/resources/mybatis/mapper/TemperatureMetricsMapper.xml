@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="li.dongpo.green.house.metrics.repository.TemperatureMetricsRepository">
+<mapper namespace="li.dongpo.house.metrics.repository.TemperatureMetricsRepository">
 
-    <resultMap id="BaseResultMap" type="li.dongpo.green.house.metrics.domain.TemperatureMetrics">
+    <resultMap id="BaseResultMap" type="li.dongpo.house.metrics.domain.TemperatureMetrics">
         <id column="id" property="id"/>
         <result column="house_id" property="houseId"/>
         <result column="device_id" property="deviceId"/>
@@ -17,7 +17,7 @@
     </sql>
 
     <insert id="insert" useGeneratedKeys="true" keyColumn="id" keyProperty="id"
-            parameterType="li.dongpo.green.house.metrics.domain.TemperatureMetrics">
+            parameterType="li.dongpo.house.metrics.domain.TemperatureMetrics">
         insert into temperature_metrics
         (`house_id`, `device_id`, `metric_time`, `temperature`)
         values
