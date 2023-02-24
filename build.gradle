@@ -1,6 +1,9 @@
 plugins {
 	id 'org.springframework.boot' version '2.6.2'
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+
+	id 'com.google.cloud.tools.jib' version '3.3.1'
+
 	id 'java'
 }
 
@@ -33,4 +36,28 @@ dependencies {
 
 test {
 	useJUnitPlatform()
+}
+
+ext.getGitShortHash = { ->
+	def stdout = new ByteArrayOutputStream()
+	exec {
+		commandLine 'git', 'rev-parse', 'HEAD'
+		standardOutput = stdout
+	}
+	return stdout.toString().trim()
+}
+
+jib {
+	from {
+		image = 'eclipse-temurin:17.0.5_8-jdk-centos7'
+	}
+	to {
+		image = "registry.cn-beijing.aliyuncs.com/sketcherly/${rootProject.name}:${getGitShortHash()}"
+		auth {
+			username = 'developer@1795522291337151'
+			password = 'IOT4wlhCJpLyBRTS'
+		}
+	}
+	container {
+	}
 }
