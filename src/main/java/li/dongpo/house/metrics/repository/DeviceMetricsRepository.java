@@ -1,6 +1,6 @@
 package li.dongpo.house.metrics.repository;
 
-import li.dongpo.house.metrics.domain.TemperatureMetrics;
+import li.dongpo.house.metrics.domain.DeviceMetrics;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -8,8 +8,8 @@ import org.springframework.stereotype.Repository;
  * @date 2022/9/22
  */
 @Repository
-public interface TemperatureMetricsRepository {
+public interface DeviceMetricsRepository {
 
-    int insert(TemperatureMetrics metrics);
+    int insert(DeviceMetrics metrics);
 
 }

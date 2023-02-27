@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="li.dongpo.house.metrics.repository.DeviceRepository">
+
+    <resultMap id="BaseResultMap" type="li.dongpo.house.metrics.domain.Device">
+        <id column="id" property="id"/>
+        <result column="device_id" property="deviceId"/>
+        <result column="house_id" property="houseId"/>
+        <result column="title" property="title"/>
+        <result column="reboot" property="reboot"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="createTime"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        `id`, `device_id`, `house_id`, `title`, `reboot`, `create_time`, `update_time`
+    </sql>
+
+    <select id="selectByDeviceId" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from device
+        where device_id = #{deviceId}
+    </select>
+
+    <update id="reboot" parameterType="li.dongpo.house.metrics.domain.Device">
+        update device
+        set reboot = 1
+        where device_id = #{deviceId}
+    </update>
+</mapper>

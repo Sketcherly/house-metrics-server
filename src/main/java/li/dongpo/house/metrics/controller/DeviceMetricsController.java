@@ -18,8 +18,8 @@ import javax.annotation.Resource;
  * @date 2022/9/22
  */
 @RestController
-@RequestMapping("/metrics/temperature")
-public class TemperatureMetricsController {
+@RequestMapping("/device/metrics")
+public class DeviceMetricsController {
 
     @Resource
     private DeviceMetricsService deviceMetricsService;
@@ -41,8 +41,8 @@ public class TemperatureMetricsController {
 
         metrics.setDeviceId(requestDto.getDeviceId());
         metrics.setMetricTime(requestDto.getMetricTime());
-        metrics.setMetricType("T");
-        metrics.setMetricValue(requestDto.getTemperature());
+        metrics.setMetricType(requestDto.getMetricType());
+        metrics.setMetricValue(requestDto.getMetricValue());
 
         deviceMetricsService.postMetrics(metrics);
 

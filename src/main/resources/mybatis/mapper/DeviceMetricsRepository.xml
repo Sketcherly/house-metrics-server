@@ -1,33 +1,34 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="li.dongpo.house.metrics.repository.TemperatureMetricsRepository">
+<mapper namespace="li.dongpo.house.metrics.repository.DeviceMetricsRepository">
 
-    <resultMap id="BaseResultMap" type="li.dongpo.house.metrics.domain.TemperatureMetrics">
+    <resultMap id="BaseResultMap" type="li.dongpo.house.metrics.domain.DeviceMetrics">
         <id column="id" property="id"/>
         <result column="house_id" property="houseId"/>
         <result column="device_id" property="deviceId"/>
-        <result column="temperature" property="temperature"/>
         <result column="metric_time" property="metricTime"/>
+        <result column="metric_type" property="metricType"/>
+        <result column="metric_value" property="metricValue"/>
         <result column="create_time" property="createTime"/>
         <result column="update_time" property="createTime"/>
     </resultMap>
 
     <sql id="Base_Column_List">
-        `id`, `house_id`, `device_id`, `metric_time`, `temperature`, `create_time`, `update_time`
+        `id`, `house_id`, `device_id`, `metric_time`, `metric_type`, `metric_value`, `create_time`, `update_time`
     </sql>
 
     <insert id="insert" useGeneratedKeys="true" keyColumn="id" keyProperty="id"
-            parameterType="li.dongpo.house.metrics.domain.TemperatureMetrics">
-        insert into temperature_metrics
-        (`house_id`, `device_id`, `metric_time`, `temperature`)
+            parameterType="li.dongpo.house.metrics.domain.DeviceMetrics">
+        insert into device_metrics
+        (`house_id`, `device_id`, `metric_time`, `metric_type`, `metric_value`)
         values
-        (#{houseId}, #{deviceId}, #{metricTime}, #{temperature})
+        (#{houseId}, #{deviceId}, #{metricTime}, #{metricType}, #{metricValue})
     </insert>
 
     <select id="selectById" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
-        from temperature_metrics
+        from device_metrics
         where id = #{id}
     </select>
 
