@@ -25,7 +25,7 @@
 
     <update id="reboot" parameterType="li.dongpo.house.metrics.domain.Device">
         update device
-        set reboot = 1
+        set reboot = 0
         where device_id = #{deviceId}
     </update>
 </mapper>
