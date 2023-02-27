@@ -5,10 +5,7 @@ import li.dongpo.house.metrics.domain.vo.BasicResponseObject;
 import li.dongpo.house.metrics.service.DeviceService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
@@ -32,9 +29,9 @@ public class DeviceController {
     }
 
     @PostMapping("/reboot")
-    public BasicResponseObject<Boolean> reboot(String deviceId) {
-        logger.info("设备重启，deviceId:{}", deviceId);
-        deviceService.reboot(deviceId);
+    public BasicResponseObject<Boolean> reboot(@RequestBody Device device) {
+        logger.info("设备重启，deviceId:{}", device.getDeviceId());
+        deviceService.reboot(device.getDeviceId());
         return BasicResponseObject.ok(true);
     }
 
